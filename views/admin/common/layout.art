@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 骨架文件 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Management</title>
+    <!-- 模版相对路径是根据浏览器请求路径，所以将静态资源的路径改为绝对路径/admin -->
+    <link rel="stylesheet" href="/admin/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/admin/css/base.css">
+    <!-- css link的坑 -->
+    {{block 'link'}}{{/block}}
+</head>
+
+<body>
+    {{block 'main'}}{{/block}}
+    <script src="/admin/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/admin/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/admin/js/common.js"></script>
+    {{block 'script'}}{{/block}}
+</body>
+</html>
