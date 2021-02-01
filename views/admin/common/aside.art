@@ -2,6 +2,7 @@
 <div class="aside fl">
     <ul class="menu list-unstyled">
         <li>
+            <!-- active是值，一定要加引号！-->
             <a class="item {{currentLink == 'user' ? 'active' : ''}}" href="/admin/user">
                 <span class="glyphicon glyphicon-user"></span>
                 用户管理

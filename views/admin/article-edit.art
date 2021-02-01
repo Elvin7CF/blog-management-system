@@ -8,30 +8,29 @@
         <div class="main">
             <!-- 分类标题 -->
             <div class="title">
-                <h4>{{article && article._id}}</h4>
-                <p class="tips">{{message}}</p>
+                <h4>Hello</h4>
+                <p class="tips">错误</p>
             </div>
             <!-- /分类标题 -->
             <!-- 
+                涉及文件上传功能的表单，必须用二进制编码格式保存
                 enctype 指定表单数据的编码类型
-                    application/x-www-foem-urlencoded(默认)
+                   默认值： application/x-www-foem-urlencoded(默认)
                         name=zhansan&age=20
-                    multipart/form-data 将表单数据编码成二进制类型
+                   二进制： multipart/form-data 将表单数据编码成二进制类型
             -->
-            <form class="form-container" method="POST" action="{{link}}" enctype="multipart/form-data">
+            <form class="form-container" action="/admin/article-add" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>标题</label>
-                    <input name="title" type="text" class="form-control" placeholder="请输入文章标题"
-                        value="{{article && article.title}}">
+                    <input name="title" type="text" class="form-control" placeholder="请输入文章标题">
                 </div>
                 <div class="form-group">
                     <label>作者</label>
-                    <input name="author" type="text" class="form-control" readonly value="{{@userInfo._id}}">
+                    <input name="author" type="text" class="form-control" >
                 </div>
                 <div class="form-group">
                     <label>发布时间</label>
-                    <input name="publishDate" type="date" class="form-control"
-                        value="{{article && dateFormat(article.publishDate,'yyyy-mm-dd')}}">
+                    <input name="publishDate" type="date" class="form-control">
                 </div>
 
                 <div class="form-group">
@@ -39,16 +38,15 @@
                     <!-- multiple 允许用户一次性选择多个文件 -->
                     <input name="cover" type="file" id="file">
                     <div class="thumbnail-waper">
-                        <img class="img-thumbnail" src="{{article && article.cover}}" id="preview"
-                            style="max-width: 500px;">
+                        <img class="img-thumbnail" id="preview" style="max-width: 500px;">
                     </div>
                 </div>
                 <div class="form-group">
                     <label>内容</label>
-                    <textarea name="content" class="form-control" id="editor">{{article && article.content}}</textarea>
+                    <textarea name="content" class="form-control" id="editor">lalalalala</textarea>
                 </div>
                 <div class="buttons">
-                    <input type="submit" class="btn btn-primary" value="{{button}}">
+                    <input type="submit" class="btn btn-primary">
                 </div>
             </form>
 
