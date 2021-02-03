@@ -1,3 +1,4 @@
+//添加 用户信息
 //引入用户集合
 const {User,validateUser} = require('../../model/user');
 //引入bcrypt加密模块

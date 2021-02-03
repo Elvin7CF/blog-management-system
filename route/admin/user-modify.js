@@ -1,4 +1,4 @@
-//用户修改信息功能
+//修改 用户信息功能
 //导入User集合构造函数
 const {User} = require('../../model/user');
 //导入bcrypt模块

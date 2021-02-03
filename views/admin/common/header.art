@@ -1,7 +1,9 @@
 <!-- 头部 -->
 <div class="header">
     <!-- 网站标志 -->
-    <div class="logo fl">小米 <i>MI</i></div>
+    <div class="logo fl">
+        <a href="/home" class="logo fl">管理系统 <i>MS</i></a>
+    </div>
     <!-- /网站标志 -->
     <!-- 用户信息 -->
     <div class="info">

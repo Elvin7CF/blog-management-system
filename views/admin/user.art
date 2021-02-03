@@ -49,7 +49,7 @@
                     <a href="/admin/user?page=<%=page-1%>"><span>&laquo;</span></a>
                 </li>
                 <% for(let i =1;i<=pageTotal;i++){ %>
-                    <li>
+                    <li class="{{i==page ? 'active':''}}">
                     <a href="/admin/user?page=<%=i%>"><%= i %></a>
                 </li>
                 <% } %>
@@ -87,6 +87,7 @@
         //为删除按钮添加点击事件，把所点击的用户id保存在下方删除窗口的隐藏input里
         $(".delete").on('click', function(){
             var id = $(this).attr('data-id');
+            //将id存在隐藏域
             $("#deleteUserId").val(id);
         })
     </script>

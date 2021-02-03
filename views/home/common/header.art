@@ -1,0 +1,30 @@
+<!-- 头部框架开始 -->
+<div class="header">
+    <div class="w1100">
+        <!-- 网站logo开始 -->
+        <h1 class="logo fl">
+            <a href="/admin/login"><img src="/home/images/elvin.png"></a>
+        </h1>
+        <!-- 网站logo结束 -->
+        <!-- 网站导航开始 -->
+        <ul class="navigation fr">
+            {{if userInfo}}
+                <li>
+                    <a href="/home">欢迎回来, {{userInfo.username}} </a>
+                </li>
+            {{else}}
+                <li>
+                    <a href="/admin/login">登陆</a>
+                </li>
+            {{/if}}
+            <li>
+                 <a class="active" href="/home">首页</a>
+             </li>
+
+        </ul>
+        <!-- 网站导航结束 -->
+         
+    </div>
+    </div>
+</div>
+<!-- 头部框架结束 -->

@@ -25,7 +25,7 @@ module.exports = async(req,res) => {
         // 否则为添加操作
         res.render('admin/user-edit', {
             errMsg: message,
-            link: '/admin/user-edit',
+            link: '/admin/user-add',
             btn: "添加"
         });
     }

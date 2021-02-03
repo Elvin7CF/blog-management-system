@@ -6,6 +6,16 @@ const path = require('path');
 const bodyParser = require('body-parser');
 //引入express-session模块
 const session = require('express-session');
+// 导入art-template模块
+const template = require('art-template');
+//引入dateformat模块
+const dateFormat = require('dateformat');
+//导入morgan模块
+// const morgan = require('morgan');
+//导入config模块
+// const config = require('config');
+
+
 //创建网站服务器
 const app = express();
 //数据库连接
@@ -16,7 +26,13 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(session({
     secret: "Our little secret.",
     resave: false,
-    saveUninitialized: false
+    // 未登陆不保存cookie
+    saveUninitialized: false,
+    // 若不指定cookie过期时间，则关闭浏览器后会删除cookie
+    // 手动设置cookie过期时间,maxAge单位为毫秒，这里设置为一天
+    cookie: {
+        maxAge: 24 * 60 * 60 * 1000 
+    }
 }));
 
 //配置art模版引擎
@@ -26,9 +42,22 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'art');
 //因为express允许使用多个模版，这个有必要告诉express，当渲染art模版时，所使用的模版引擎
 app.engine('art', require('express-art-template'));
+//向模版内部导入dateFormat变量
+template.defaults.imports.dateFormat = dateFormat;
 
 //开放静态资源文件
 app.use(express.static(path.join(__dirname, 'public')));
+
+// 查看当前环境是生产环境还是开发环境
+// development 开发环境
+// production 生产环节
+// if(process.env.NODE_ENV == "development") {
+//     console.log("当前是开发环境");
+//     // 开发环境 将客户端的请求信息打印到控制台
+//     app.use(morgan('dev'));
+// }else{
+//     console.log("当前是生产环境");
+// }
 
 //引入home路由模块
 const home = require('./route/home');
@@ -42,8 +71,10 @@ app.use('/admin', require('./middleware/loginGuard'));
 app.use('/home', home);
 app.use('/admin', admin);
 
-//express错误处理中间件，next()接收的参数传进err
+// express错误处理中间件，next()接收的参数传进err
 app.use((err, req, res, next) => {
+    //先显示错误内容
+    console.log(err);
     //把JSON字符串转换为对象
     const result = JSON.parse(err);
     let params = [];
@@ -56,6 +87,7 @@ app.use((err, req, res, next) => {
     //传入错误信息并重定向,用&分隔params里的参数
     res.redirect(`${result.path}?${params.join('&')}`);
 })
+
 
 //80为路由器localhost默认端口
 app.listen(3000, function(){

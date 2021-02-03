@@ -1,3 +1,4 @@
+// 登录功能
 //引入bcrypt模块
 const bcrypt = require('bcrypt');
 //传入User集合
@@ -22,11 +23,20 @@ module.exports = async (req,res) => {
         if(isValid){ 
             //用户登录成功，将用户名存储在session对象中
             req.session.username = user.username;
-            // res.send('登陆成功');
+            // 用户登录成功，将用户角色存储在session对象中
+            req.session.role = user.role;
             //将用户信息保存在app.locals对象下面，这个数据在所有的模板中都可以获取到
             req.app.locals.userInfo = user;
+            // 对用户角色进行判断
+            if(user.role == 'admin'){
+                // 用户角色为超级管理员，重定向到用户管理页面
+                res.redirect('/admin/user');
+            }else{
+                // 用户角色为普通用户，重定向到文章首页
+                res.redirect('/home');
+            }
+
             //重定向到user页面
-            res.redirect('/admin/user');
         }else{
             res.status(400).render('admin/error', { msg: "邮箱地址或者密码输入错误"});
         }
